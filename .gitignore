@@ -130,4 +130,6 @@ dmypy.json
 
 .idea
 .setup.cfg
-*/migrations/
+users/migrations/
+recipes/migrations/
+api/migrations/
