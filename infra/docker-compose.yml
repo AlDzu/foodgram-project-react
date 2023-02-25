@@ -9,9 +9,7 @@ services:
       - ./.env
 
   backend:
-    build:
-      context: ../backend
-      dockerfile: Dockerfile
+    image: aldzu/backend
     volumes:
       - static_value:/app/static/
       - media_value:/app/media/
