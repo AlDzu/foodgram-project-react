@@ -42,7 +42,7 @@ urlpatterns = [
     ),
     path(
         'recipes/<int:id>/shopping_cart/',
-        views.ShoppingCartViewSet.as_view(),
+        views.ShoppingCartViewSet,
         name='shopping_cart'
     ),
     path("", include(router_v1.urls)),
