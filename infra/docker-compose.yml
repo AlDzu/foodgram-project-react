@@ -17,15 +17,12 @@ services:
       - db
     env_file:
       - ./.env
-    restart: always
 
   frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
-    volumes:
+   image: aldzu/frontend
+  volumes:
       - ../frontend/:/app/result_build/
-    depends_on:
+  depends_on:
       - db
 
   nginx:
