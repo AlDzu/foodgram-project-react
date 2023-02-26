@@ -91,7 +91,10 @@ class ShoppingCartViewSet(viewsets.ModelViewSet):
             models.Recipe,
             pk=self.kwargs.get("recipe_id")
         )
-        title_data = {"recipe": recipe, "user": self.request.user}
+        title_data = {
+            "recipe": recipe,
+            "user": self.request.user
+        }
         serializer.save(**title_data)
 
     def list(self, request, *args, **kwargs):
