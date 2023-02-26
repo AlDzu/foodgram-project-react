@@ -1,16 +1,13 @@
 import os
 
-from dotenv import load_dotenv
-
-load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = os.environ.get("SECRET_KEY", default="DefaultKey")
+SECRET_KEY = os.getenv("SECRET_KEY", default="DefaultKey")
 
 DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(", ")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(", ")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
