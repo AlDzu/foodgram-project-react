@@ -15,7 +15,7 @@ class Tag(models.Model):
 
     class Meta:
         verbose_name = "Тег"
-        ordering = ("id")
+        ordering = ("id", )
 
     def __str__(self):
         return self.name
@@ -74,7 +74,7 @@ class Recipe(models.Model):
 
     class Meta:
         verbose_name = "Рецепт"
-        ordering = ("-create_date")
+        ordering = ("-create_date", )
 
     def __str__(self):
         return self.name

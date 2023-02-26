@@ -43,7 +43,7 @@ class Subscriber(models.Model):
 
     class Meta:
         verbose_name = "Подписка"
-        ordering = ("id")
+        ordering = ("id", )
 
     def __str__(self):
         return f"{self.subscriber} подписан на {self.author}"
