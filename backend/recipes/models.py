@@ -1,5 +1,8 @@
 from django.contrib.auth import get_user_model
+from django.core.validators import MinValueValidator
 from django.db import models
+from colorfield.fields import ColorField
+
 
 User = get_user_model()
 
@@ -8,7 +11,7 @@ class Tag(models.Model):
     """Тег"""
 
     name = models.CharField("Название", max_length=100)
-    color = models.CharField("Цвет по HEX", max_length=10)
+    color = ColorField("Цвет по HEX", default='#FF0000')
     slug = models.SlugField("Путь", unique=True, max_length=100)
 
     class Meta:
@@ -55,7 +58,10 @@ class Recipe(models.Model):
         related_name="recipes"
     )
     tags = models.ManyToManyField(Tag, related_name="recipes")
-    cooking_time = models.IntegerField("Время приготовления", )
+    cooking_time = models.IntegerField(
+        "Время приготовления",
+        validators=[MinValueValidator(1)]
+        )  # Не менее минуты?
     create_date = models.DateTimeField(
         "Дата добавления",
         auto_now_add=True,
@@ -113,7 +119,10 @@ class RecipeIngredients(models.Model):
         related_name="amount",
         on_delete=models.CASCADE
     )
-    amount = models.IntegerField("Количество", )
+    amount = models.IntegerField(
+        "Количество",
+        validators=[MinValueValidator(1)]
+    )  # Не менее единицы измерения
     constraints = (
         models.UniqueConstraint(
             fields=("recipe", "ingredient"),
