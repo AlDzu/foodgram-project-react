@@ -34,16 +34,16 @@ class Subscriber(models.Model):
         related_name="authors",
         on_delete=models.CASCADE,
     )
-    constraints = [
+    constraints = (
         models.UniqueConstraint(
-            fields=["subscriber", "author"],
+            fields=("subscriber", "author"),
             name="unique_following",
         )
-    ]
+    )
 
     class Meta:
         verbose_name = "Подписка"
-        ordering = ["id"]
+        ordering = ("id")
 
     def __str__(self):
         return f"{self.subscriber} подписан на {self.author}"
