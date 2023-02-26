@@ -13,7 +13,7 @@ class Tag(models.Model):
 
     class Meta:
         verbose_name = "Тег"
-        ordering = ["id"]
+        ordering = ("id")
 
     def __str__(self):
         return self.name
@@ -24,12 +24,12 @@ class Ingredient(models.Model):
 
     name = models.CharField("Название", max_length=100)
     measurement_unit = models.CharField("Ед. измерения", max_length=100)
-    constraints = [
+    constraints = (
         models.UniqueConstraint(
-            fields=["name", "measurement_unit"],
+            fields=("name", "measurement_unit"),
             name="unique_ingredient",
         )
-    ]
+    )
 
     class Meta:
         verbose_name = "Ингредиенты"
@@ -48,7 +48,7 @@ class Recipe(models.Model):
     )
     name = models.CharField("Название", max_length=100)
     image = models.ImageField(upload_to="recipes/")
-    text = models.TextField("Описание", max_length=100)
+    text = models.TextField("Описание", )
     ingredients = models.ManyToManyField(
         Ingredient,
         through="RecipeIngredients",
@@ -69,7 +69,7 @@ class Recipe(models.Model):
 
     class Meta:
         verbose_name = "Рецепт"
-        ordering = ["-create_date"]
+        ordering = ("-create_date")
 
     def __str__(self):
         return self.name
@@ -88,12 +88,12 @@ class Favorite(models.Model):
         related_name="favorite_recipes",
         on_delete=models.CASCADE
     )
-    constraints = [
+    constraints = (
         models.UniqueConstraint(
-            fields=["recipe", "user"],
+            fields=("recipe", "user"),
             name="unique_favorite",
         )
-    ]
+    )
 
     class Meta:
         verbose_name = "Избранный рецепт"
@@ -114,12 +114,12 @@ class RecipeIngredients(models.Model):
         on_delete=models.CASCADE
     )
     amount = models.IntegerField("Количество", )
-    constraints = [
+    constraints = (
         models.UniqueConstraint(
-            fields=["recipe", "ingredient"],
+            fields=("recipe", "ingredient"),
             name="unique_ingredient",
         )
-    ]
+    )
 
     class Meta:
         verbose_name = "Ингредиент рецепта"
@@ -144,12 +144,12 @@ class Cart(models.Model):
         related_name="cart",
         on_delete=models.CASCADE
     )
-    constraints = [
+    constraints = (
         models.UniqueConstraint(
             name="unique_cart",
-            fields=["recipe", "user"],
+            fields=("recipe", "user"),
         )
-    ]
+    )
 
     class Meta:
         verbose_name = "Список покупок"
