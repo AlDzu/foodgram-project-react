@@ -9,7 +9,7 @@ services:
       - ./.env
 
   backend:
-    image: aldzu/backend
+    image: aldzu/backend:latest
     volumes:
       - static_value:/app/static/
       - media_value:/app/media/recipes/
@@ -19,7 +19,7 @@ services:
       - ./.env
 
   frontend:
-    image: aldzu/frontend
+    image: aldzu/frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
