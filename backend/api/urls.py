@@ -1,8 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
 
-from . import views, download
-
+from . import download, views
 
 router_v1 = routers.DefaultRouter()
 router_v1.register(
