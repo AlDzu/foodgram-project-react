@@ -13,13 +13,20 @@ User = get_user_model()
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = "__all__"
+        fields = (
+            'name',
+            'color',
+            'slug',
+        )
         model = models.Tag
 
 
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = "__all__"
+        fields = (
+            'name',
+            'measurement_unit',
+        )
         model = models.Ingredient
 
 
@@ -38,7 +45,7 @@ class RecipeIngredientsSerializer(serializers.ModelSerializer):
     )
 
     class Meta:
-        fields = ["id", "name", "measurement_unit", "amount"]
+        fields = ("id", "name", "measurement_unit", "amount")
         model = models.RecipeIngredients
 
 
@@ -47,14 +54,14 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = [
+        fields = (
             "email",
             "id",
             "username",
             "first_name",
             "last_name",
             "is_subscribed",
-        ]
+        )
 
     def get_is_subscribed(self, obj):
         return False
@@ -74,7 +81,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     )
 
     class Meta:
-        exclude = ['favorite', ]
+        exclude = ('favorite', )
         model = models.Recipe
 
     def create(self, validated_data):
@@ -130,12 +137,12 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 class CustomRecipeSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = [
+        fields = (
             "id",
             "name",
             "image",
             "cooking_time",
-        ]
+        )
         model = models.Recipe
 
 
@@ -176,7 +183,7 @@ class ShoppingCartSerializer(serializers.ModelSerializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True, required=False)
 
     class Meta:
-        fields = "__all__"
+        fields = ('recipe', 'user', )
         model = models.Cart
 
     def validate(self, attrs):
