@@ -24,8 +24,8 @@ class RecipeAdmin(admin.ModelAdmin):
         return obj.favorite.count()
 
 
-admin.site.register(models.Tag)
-admin.site.register(models.Ingredient)
-admin.site.register(models.Recipe)
+admin.site.register(models.Tag, TagAdmin)
+admin.site.register(models.Ingredient, IngredientAdmin)
+admin.site.register(models.Recipe, RecipeAdmin)
 admin.site.register(models.Cart)
 admin.site.register(models.Favorite)
