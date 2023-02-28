@@ -29,7 +29,6 @@ router_v1.register(
     views.UserSubscriberViewSet,
     basename="subscriptions",
 )
-
 router_v1.register("tags", views.TagViewSet)
 router_v1.register("ingredients", views.IngredientViewSet)
 
