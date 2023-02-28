@@ -44,4 +44,4 @@ docker-compose down -v
 ```
 Вход в админку:
 Email: admin@admin.com
-Pass: admin123!
+Pass: admin1
