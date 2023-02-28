@@ -42,3 +42,6 @@ docker-compose exec web python manage.py createsuperuser
 ```
 docker-compose down -v
 ```
+Вход в админку:
+Email: admin@admin.com
+Pass: admin123!
