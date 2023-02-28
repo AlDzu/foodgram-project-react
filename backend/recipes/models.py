@@ -60,7 +60,7 @@ class Recipe(models.Model):
     cooking_time = models.IntegerField(
         "Время приготовления",
         validators=[MinValueValidator(1)]
-        )  # Не менее минуты?
+        )
     create_date = models.DateTimeField(
         "Дата добавления",
         auto_now_add=True,
